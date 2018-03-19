@@ -1,3 +1,5 @@
+package JavaHW;
+
 /**
  * @author a.kovtun
  * @since 16.03.2018.
