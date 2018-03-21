@@ -1,4 +1,4 @@
-package JavaHW;
+package ru.stqa.pft.sandbox;
 
 /**
  * @author a.kovtun
@@ -12,14 +12,10 @@ public class PointMain {
     }
 
     public static void main(String[] args) {
-        Point aa = new Point();
-        Point bb = new Point();
-        aa.x = 1.0;
-        aa.y = 2.0;
-        bb.x = 3.0;
-        bb.y = 4.0;
+        Point aa = new Point(1.0,2.0);
+        Point bb = new Point(3.0,4.0);
         System.out.println(aa.distance1(bb));
-        System.out.println(distance(aa,bb));
+        //System.out.println(distance(aa,bb));
 
     }
 }
