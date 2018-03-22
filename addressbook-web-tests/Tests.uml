@@ -3,33 +3,40 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="0.0" y="344.0">ru.stqa.pft.addressbook.GroupDelete</node>
-    <node x="208.0" y="344.0">ru.stqa.pft.addressbook.GroupCreationTests</node>
-    <node x="70.5" y="0.0">ru.stqa.pft.addressbook.TestBase</node>
+    <node x="75.25" y="0.0">ru.stqa.pft.addressbook.appmanager.ApplicationManager</node>
+    <node x="0.0" y="224.0">ru.stqa.pft.addressbook.tests.GroupCreationTests</node>
+    <node x="53.25" y="101.0">ru.stqa.pft.addressbook.tests.TestBase</node>
+    <node x="173.0" y="224.0">ru.stqa.pft.addressbook.tests.GroupDelete</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="ru.stqa.pft.addressbook.GroupDelete" target="ru.stqa.pft.addressbook.TestBase">
-      <point x="0.0" y="-25.5" />
-      <point x="94.0" y="319.0" />
-      <point x="135.75" y="319.0" />
-      <point x="-65.25" y="147.0" />
+    <edge source="ru.stqa.pft.addressbook.appmanager.ApplicationManager" target="ru.stqa.pft.addressbook.tests.TestBase">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
     </edge>
-    <edge source="ru.stqa.pft.addressbook.GroupCreationTests" target="ru.stqa.pft.addressbook.TestBase">
-      <point x="0.0" y="-25.5" />
-      <point x="308.0" y="319.0" />
-      <point x="266.25" y="319.0" />
-      <point x="65.25" y="147.0" />
+    <edge source="ru.stqa.pft.addressbook.tests.TestBase" target="ru.stqa.pft.addressbook.appmanager.ApplicationManager">
+      <point x="-50.0" y="-36.5" />
+      <point x="103.25" y="76.0" />
+      <point x="114.25" y="76.0" />
+      <point x="-39.0" y="25.5" />
+    </edge>
+    <edge source="ru.stqa.pft.addressbook.tests.GroupCreationTests" target="ru.stqa.pft.addressbook.tests.TestBase">
+      <point x="0.0" y="-14.5" />
+      <point x="76.5" y="199.0" />
+      <point x="103.25" y="199.0" />
+      <point x="-50.0" y="36.5" />
+    </edge>
+    <edge source="ru.stqa.pft.addressbook.tests.GroupDelete" target="ru.stqa.pft.addressbook.tests.TestBase">
+      <point x="0.0" y="-14.5" />
+      <point x="230.0" y="199.0" />
+      <point x="203.25" y="199.0" />
+      <point x="50.0" y="36.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="0.0" y="0.0" />
-  <SelectedNodes>
-    <node>ru.stqa.pft.addressbook.GroupDelete</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="1.0" x="-1.0" y="388.0" />
+  <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
-    <Category>Constructors</Category>
-    <Category>Methods</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
