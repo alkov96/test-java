@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="0.0" y="344.0">ru.stqa.pft.addressbook.GroupDelete</node>
+    <node x="208.0" y="344.0">ru.stqa.pft.addressbook.GroupCreationTests</node>
+    <node x="70.5" y="0.0">ru.stqa.pft.addressbook.TestBase</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ru.stqa.pft.addressbook.GroupDelete" target="ru.stqa.pft.addressbook.TestBase">
+      <point x="0.0" y="-25.5" />
+      <point x="94.0" y="319.0" />
+      <point x="135.75" y="319.0" />
+      <point x="-65.25" y="147.0" />
+    </edge>
+    <edge source="ru.stqa.pft.addressbook.GroupCreationTests" target="ru.stqa.pft.addressbook.TestBase">
+      <point x="0.0" y="-25.5" />
+      <point x="308.0" y="319.0" />
+      <point x="266.25" y="319.0" />
+      <point x="65.25" y="147.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="0.0" y="0.0" />
+  <SelectedNodes>
+    <node>ru.stqa.pft.addressbook.GroupDelete</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
