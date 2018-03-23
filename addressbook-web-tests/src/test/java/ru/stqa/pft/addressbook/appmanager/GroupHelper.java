@@ -28,6 +28,10 @@ public class GroupHelper extends HelperBase {
         type(By.name("group_footer"), groupData.getFooter());
     }
 
+    public void selectGroup() {
+        click(By.name("selected[]"));
+    }
+
     public void initGroupCreation() {
         click(By.name("new"));
     }

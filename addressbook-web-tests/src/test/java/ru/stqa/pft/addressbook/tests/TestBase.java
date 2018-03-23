@@ -24,7 +24,5 @@ public class TestBase {
         app.stop();
     }
 
-    protected void selectGroup() {
-        wd.findElement(By.name("selected[]")).click();
-    }
+
 }
