@@ -37,7 +37,10 @@ private SessionHelper sessionHelper;
         else if (browser == BrowserType.IE) {
             wd = new InternetExplorerDriver();
         }
+<<<<<<< HEAD
       //  wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("C:\\Users\\a.kovtun\\AppData\\Local\\Mozilla Firefox\\firefox.exe"));
+=======
+>>>>>>> parent of 6a5e188... Revert "Browser"
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/");
         groupHelper = new GroupHelper(wd);
