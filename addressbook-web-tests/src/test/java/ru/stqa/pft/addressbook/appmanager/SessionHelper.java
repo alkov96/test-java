@@ -5,10 +5,10 @@ import org.openqa.selenium.firefox.FirefoxDriver; /**
  * @author a.kovtun
  * @since 22.03.2018.
  */
-public class CotactHelper extends HelperBase {
+public class SessionHelper extends HelperBase {
 
 
-    public CotactHelper(FirefoxDriver wd) {
+    public SessionHelper(FirefoxDriver wd) {
 
         super(wd);
     }
