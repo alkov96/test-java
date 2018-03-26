@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addressbook-web-tests.iml" filepath="$PROJECT_DIR$/.idea/modules/addressbook-web-tests.iml" group="addressbook-web-tests" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addressbook-web-tests/addressbook-web-tests_main.iml" filepath="$PROJECT_DIR$/.idea/modules/addressbook-web-tests/addressbook-web-tests_main.iml" group="addressbook-web-tests" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addressbook-web-tests/addressbook-web-tests_test.iml" filepath="$PROJECT_DIR$/.idea/modules/addressbook-web-tests/addressbook-web-tests_test.iml" group="addressbook-web-tests" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sandbox.iml" filepath="$PROJECT_DIR$/.idea/modules/sandbox.iml" group="sandbox" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sandbox/sandbox_main.iml" filepath="$PROJECT_DIR$/.idea/modules/sandbox/sandbox_main.iml" group="sandbox" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sandbox/sandbox_test.iml" filepath="$PROJECT_DIR$/.idea/modules/sandbox/sandbox_test.iml" group="sandbox" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/test-java.iml" filepath="$PROJECT_DIR$/.idea/modules/test-java.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/test-java_main.iml" filepath="$PROJECT_DIR$/.idea/modules/test-java_main.iml" group="test-java" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/test-java_test.iml" filepath="$PROJECT_DIR$/.idea/modules/test-java_test.iml" group="test-java" />

@@ -1,2 +1,4 @@
 rootProject.name = 'test-java'
+include 'addressbook-web-tests'
+include 'sandbox'
 

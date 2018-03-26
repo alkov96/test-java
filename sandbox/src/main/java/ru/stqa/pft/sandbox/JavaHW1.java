@@ -1,4 +1,4 @@
-package JavaHW;
+package ru.stqa.pft.sandbox;
 
 /**
  * @author a.kovtun
