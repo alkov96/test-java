@@ -11,9 +11,7 @@ public class AddNewContact extends TestBase {
     @Test
     public void testAddNewContact() {
         app.getNavigationHelper().gotoHome();
-        app.getContactHelper().initContactCreation();
-        app.getContactHelper().fillContactForm(new ContactData("la","dada", "ul", "gtg"), true );
-        app.getContactHelper().submitContactCreation();
+        app.getContactHelper().createContact(new ContactData("la","dada", "ul", "gtg"));
         app.getNavigationHelper().gotoHome();
     }
 }
