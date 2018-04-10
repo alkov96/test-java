@@ -2,12 +2,13 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author a.kovtun
@@ -38,22 +39,49 @@ public class ContactHelper extends HelperBase {
     public void submitContactCreation() {
         click(By.name("submit"));
     }
-    public void selectContact () {
-        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+
+    public void selectContact(int index) {
+        wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[@class]/td[@class='center']//img[@title='Details']")).get(index).click();
     }
-    public void submitContactModification () {
-       click(By.xpath("//div[@id='content']/form[1]/input[22]"));
+
+    public void clickContactModification() {
+        click(By.xpath("//div[@id='content']//form[@action='edit.php']/input[2]"));
     }
-    public void deleteContact (){
-        click(By.xpath("//div[@id='content']/form[2]/input[2]"));
+    public void submitContactModification() {
+        click(By.name("update"));
     }
+
+
+    public void deleteContact() {
+        click(By.xpath("//div[@id='content']//form[@action='edit.php']/input[2]"));
+        click(By.cssSelector("input[value='Delete']"));
+    }
+
     public void createContact(ContactData contact) {
         initContactCreation();
-        fillContactForm(new ContactData("la","dada", "ul", "gtg"), true );
+        fillContactForm(new ContactData("la", "dada", "ul", "gtg"), true);
         submitContactCreation();
     }
+
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
+    }
+
+    public int getGroupCount() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        List<WebElement> elements = wd.findElements(By.xpath("//table[@id='maintable']//tr[@name='entry']"));
+        for (WebElement element : elements) {
+            String firstname = element.findElement(By.xpath("td[3]")).getText();
+            String address = element.findElement(By.xpath("td[6]")).getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+            ContactData contact = new ContactData(id, firstname, address, null, null);
+            contacts.add(contact);
+        }
+        return contacts;
     }
 }
 

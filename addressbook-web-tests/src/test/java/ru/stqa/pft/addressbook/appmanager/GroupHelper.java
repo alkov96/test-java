@@ -2,14 +2,19 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author a.kovtun
  * @since 22.03.2018.
  */
 public class GroupHelper extends HelperBase {
+
 
     public GroupHelper(WebDriver wd) {
         super(wd);
@@ -29,8 +34,8 @@ public class GroupHelper extends HelperBase {
         type(By.name("group_footer"), groupData.getFooter());
     }
 
-    public void selectGroup() {
-        click(By.name("selected[]"));
+    public void selectGroup(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void initGroupCreation() {
@@ -62,4 +67,23 @@ public class GroupHelper extends HelperBase {
     public boolean isThereAGroup() {
        return isElementPresent(By.name(("selected[]")));
     }
-}
+
+    public int getGroupCount() {
+      return wd.findElements(By.name("selected[]")).size();
+
+    }
+    public List<GroupData> getGroupList() {
+      List<GroupData> groups = new ArrayList<GroupData>();
+      List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+      for (WebElement element: elements) {
+          String name = element.getText();
+          int id  = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+          GroupData group = new GroupData(id, null,null,name);
+          groups.add(group);
+      }
+
+      return groups;
+    }
+
+    }
+
