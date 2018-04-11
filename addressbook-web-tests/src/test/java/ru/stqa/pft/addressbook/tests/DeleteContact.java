@@ -14,7 +14,7 @@ import java.util.List;
  * @since 26.03.2018.
  */
 public class DeleteContact extends TestBase {
-   @Test
+   @Test(enabled = false)
     public void testDeleteContact() {
        app.getNavigationHelper().gotoHome();
         if (!app.getContactHelper().isThereAContact()) {

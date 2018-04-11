@@ -1,6 +1,8 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 
@@ -10,7 +12,7 @@ import java.util.List;
 
 
 public class GroupCreationTests extends TestBase {
-
+    @BeforeSuite
     @Test
     public void testGroupCreation() {
         app.getNavigationHelper().gotoGroupPage();
@@ -26,5 +28,5 @@ public class GroupCreationTests extends TestBase {
         Assert.assertEquals(new HashSet<Object>(before),new HashSet<Object>(after));
 
     }
-
 }
+

@@ -14,7 +14,7 @@ import java.util.List;
  * @since 26.03.2018.
  */
 public class AddNewContact extends TestBase {
-    @Test
+    @Test(enabled = false)
     public void testAddNewContact() {
         List<ContactData> before = app.getContactHelper().getContactList();
         ContactData contact = new ContactData("la","ul", "dada", "gtg");
