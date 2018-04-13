@@ -5,34 +5,42 @@ package ru.stqa.pft.addressbook.model;
  * @since 26.03.2018.
  */
 public class ContactData {
-    private int id;
-    private final String firstname;
-    private final String house;
-    private final String address;
-    private final String group;
+    private int id = Integer.MAX_VALUE;
+    private  String firstname;
+    private  String house;
+    private  String address;
+    private  String group;
 
 
 
-    public ContactData(String firstname, String house, String address, String group) {
-        this.id = Integer.MAX_VALUE;
-        this.firstname = firstname;
-        this.house = house;
-        this.address = address;
-        this.group = group;
-    }
-    public ContactData(int id, String firstname, String house, String address, String group) {
-        this.id = id;
-        this.firstname = firstname;
-        this.house = house;
-        this.address = address;
-        this.group = group;
-    }
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public ContactData withFirstname(String firstname) {
+        this.firstname = firstname;
+        return this;
+    }
+
+    public ContactData withHouse(String house) {
+        this.house = house;
+        return this;
+    }
+
+    public ContactData withAddress(String address) {
+        this.address = address;
+        return this;
+
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
+    }
+
+    public ContactData withId(int id) {
         this.id = id;
+        return this;
     }
 
     public String getFirstname() {
@@ -60,6 +68,7 @@ public class ContactData {
                 ", house='" + house + '\'' +
                 '}';
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,17 +76,18 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
+        if (id != that.id) return false;
         if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
         return house != null ? house.equals(that.house) : that.house == null;
     }
 
     @Override
     public int hashCode() {
-        int result = firstname != null ? firstname.hashCode() : 0;
+        int result = id;
+        result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
         result = 31 * result + (house != null ? house.hashCode() : 0);
         return result;
     }
-
 }
 
 
