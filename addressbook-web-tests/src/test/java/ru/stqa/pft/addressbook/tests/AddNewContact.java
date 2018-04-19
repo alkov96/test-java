@@ -1,15 +1,8 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupData;
-
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -23,13 +16,25 @@ public class AddNewContact extends TestBase {
     @Test
     public void testAddNewContact() {
        Contacts before = app.getContactHelper().all();
-        ContactData contact = new ContactData().withFirstname("NAME").withHouse("bvn").withAddress("vf").withGroup("gf");
+        ContactData contact = new ContactData().withFirstname("NAME").withAllPhones("123").withGroup("gf");
         app.getNavigationHelper().gotoHome();
         app.getContactHelper().createContact(contact, true);
         app.getNavigationHelper().gotoHome();
+        assertThat(app.getContactHelper().count(),equalTo(before.size()+1));
         Contacts after = app.getContactHelper().all();
-        assertEquals(after.size(), before.size() + 1);
         assertThat(after, equalTo(
                 before.withAdded(contact.withId(after.stream().mapToInt((g)-> g.getId()).max().getAsInt()))));
+    }
+
+    @Test
+    public void testBadAddNewContact() {
+        Contacts before = app.getContactHelper().all();
+        ContactData contact = new ContactData().withFirstname("NAME'''").withAllPhones("bvn").withGroup("gf");
+        app.getNavigationHelper().gotoHome();
+        app.getContactHelper().createContact(contact, true);
+        app.getNavigationHelper().gotoHome();
+        assertThat(app.getContactHelper().count(),equalTo(before.size()));
+        Contacts after = app.getContactHelper().all();
+        assertThat(after, equalTo(before));
     }
 }

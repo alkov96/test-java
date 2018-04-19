@@ -1,16 +1,8 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.stqa.pft.addressbook.appmanager.HelperBase;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupData;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -25,7 +17,7 @@ public class DeleteContact extends TestBase {
     public void testDeleteContact() {
        app.getNavigationHelper().gotoHome();
         if (!app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new ContactData().withFirstname("bgd").withAddress("gvdf").withHouse("bdf"), true);
+            app.getContactHelper().createContact(new ContactData().withFirstname("name").withAllPhones("1234"), true);
         }
        Contacts before = app.getContactHelper().all();
        ContactData deletedContact = before.iterator().next();

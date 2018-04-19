@@ -7,11 +7,30 @@ package ru.stqa.pft.addressbook.model;
 public class ContactData {
     private int id = Integer.MAX_VALUE;
     private  String firstname;
-    private  String house;
     private  String address;
     private  String group;
+    private String lastname;
+    private String email;
+    private String email2;
+    private String work;
+    private String email3;
+    private String home;
+    private String mobile;
+    private String AllEmails;
+    private String phones;
 
+    public String getAllEmails() {
+        return AllEmails;
+    }
 
+    public ContactData withAllEmails(String phones) {
+        this.AllEmails = phones;
+        return this;
+    }
+
+    public String getAllPhones() {
+        return phones;
+    }
 
     public int getId() {
         return id;
@@ -22,8 +41,8 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withHouse(String house) {
-        this.house = house;
+    public ContactData withAllPhones(String phones) {
+        this.phones = phones;
         return this;
     }
 
@@ -42,18 +61,75 @@ public class ContactData {
         this.id = id;
         return this;
     }
+    public ContactData withLastname(String lastname) {
+        this.lastname = lastname;
+        return this;
+    }
+    public ContactData withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+    public ContactData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+    public ContactData withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
+    public ContactData withHome(String home) {
+        this.home = home;
+        return this;
+    }
+    public ContactData withMobile(String mobile) {
+        this.mobile = mobile;
+        return this;
+    }
+    public ContactData withWork(String work) {
+        this.work = work;
+        return this;
+    }
+
+
 
     public String getFirstname() {
         return firstname;
     }
 
-    public String getHouse() {
-        return house;
+    public String getPhones() {
+        return phones;
     }
 
     public String getAddress()  {
         return address;
     }
+
+    public String getLastname()  {
+        return lastname;
+    }
+    public String getEmail()  {
+        return email;
+    }
+    public String getEmail2()  {
+        return email2;
+    }
+    public String getEmail3()  {
+        return email3;
+    }
+    public String getWork()  {
+        return work;
+    }
+    public String getHome()  {
+        return home;
+    }
+    public String getMobile()  {
+        return mobile;
+    }
+
+
+
+
+
 
 
     public String getGroup()  {
@@ -65,7 +141,7 @@ public class ContactData {
         return "ContactData{" +
                 "id='" + id + '\'' +
                 ", firstname='" + firstname + '\'' +
-                ", house='" + house + '\'' +
+                ", phones='" + phones + '\'' +
                 '}';
     }
 
@@ -78,14 +154,14 @@ public class ContactData {
 
         if (id != that.id) return false;
         if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
-        return house != null ? house.equals(that.house) : that.house == null;
+        return phones != null ? phones.equals(that.phones) : that.phones == null;
     }
 
     @Override
     public int hashCode() {
         int result = id;
         result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
-        result = 31 * result + (house != null ? house.hashCode() : 0);
+        result = 31 * result + (phones != null ? phones.hashCode() : 0);
         return result;
     }
 }
