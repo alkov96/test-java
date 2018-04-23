@@ -6,6 +6,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.io.File;
+
 /**
  * @author a.kovtun
  * @since 22.03.2018.
@@ -25,6 +27,12 @@ public class HelperBase {
         click(locator);
                 wd.findElement(locator).clear();
                 wd.findElement(locator).sendKeys(text);
+    }
+
+    protected void attach (By locator, File file) {
+        if (file != null) {
+            wd.findElement(locator).sendKeys(file.getAbsolutePath());
+        }
     }
 
     public void acceptAlert() {
