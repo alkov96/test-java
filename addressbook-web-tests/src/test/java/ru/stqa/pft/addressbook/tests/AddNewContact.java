@@ -26,24 +26,25 @@ public class AddNewContact extends TestBase {
     @DataProvider
     public Iterator<Object[]> validContacts() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
-        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")));
-        String xml = "";
-        String line =  reader.readLine();
-        while (line != null) {
-            xml += line;
-            line =  reader.readLine();
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")))) {
+            String xml = "";
+            String line = reader.readLine();
+            while (line != null) {
+                xml += line;
+                line = reader.readLine();
+            }
+            XStream xstream = new XStream();
+            xstream.processAnnotations(ContactData.class);
+            List<ContactData> contacts = (List<ContactData>) xstream.fromXML(xml);
+            return contacts.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
         }
-        XStream xstream = new XStream();
-        xstream.processAnnotations(ContactData.class);
-        List<ContactData> contacts = (List<ContactData>)xstream.fromXML(xml);
-        return  contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
     }
 
     @Test(dataProvider = "validContacts")
-    public void testAddNewContact() {
+    public void testAddNewContact(ContactData contact) {
        Contacts before = app.getContactHelper().all();
         File photo = new File("src/test/resources/cat.jpg");
-        ContactData contact = new ContactData().withFirstname("NAME").withAllPhones("123").withPhoto(photo).withGroup("gf");
+        //ContactData contact = new ContactData().withFirstname("NAME").withAllPhones("123").withPhoto(photo);
         app.getNavigationHelper().gotoHome();
         app.getContactHelper().createContact(contact, true);
         app.getNavigationHelper().gotoHome();

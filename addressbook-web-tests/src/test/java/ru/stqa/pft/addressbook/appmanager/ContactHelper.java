@@ -27,8 +27,8 @@ public class ContactHelper extends HelperBase {
 
     public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstname());
-        type(By.name("home"), contactData.getPhones());
-        type(By.name("address2"), contactData.getPhones());
+        type(By.name("address"), contactData.getAddress());
+        type(By.name("lastname"), contactData.getLastname());
         attach(By.name("photo"), contactData.getPhoto());
 
 
@@ -71,6 +71,7 @@ public class ContactHelper extends HelperBase {
         initContactCreation();
         fillContactForm(contact, creation);
         submitContactCreation();
+
     }
 
     public boolean isThereAContact() {
@@ -86,9 +87,11 @@ public class ContactHelper extends HelperBase {
         List<WebElement> elements = wd.findElements(By.xpath("//table[@id='maintable']//tr[@name='entry']"));
         for (WebElement element : elements) {
             String firstname = element.findElement(By.xpath("td[3]")).getText();
-            String phones = element.findElement(By.xpath("td[6]")).getText();
+            String lastname = element.findElement(By.xpath("td[2]")).getText();
+            String address = element.findElement(By.xpath("td[4]")).getText();
+            //String phones = element.findElement(By.xpath("td[6]")).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-            contacts.add(new ContactData().withId(id).withFirstname(firstname).withAllPhones(phones));
+            contacts.add(new ContactData().withFirstname(firstname).withAddress(address).withLastname(lastname));
         }
         return contacts;
     }
