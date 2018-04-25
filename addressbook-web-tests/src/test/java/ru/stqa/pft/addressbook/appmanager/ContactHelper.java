@@ -32,11 +32,11 @@ public class ContactHelper extends HelperBase {
         attach(By.name("photo"), contactData.getPhoto());
 
 
-        if (creation) {
+        /*if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
+        }*/
     }
 
     public void submitContactCreation() {
@@ -89,7 +89,7 @@ public class ContactHelper extends HelperBase {
             String firstname = element.findElement(By.xpath("td[3]")).getText();
             String lastname = element.findElement(By.xpath("td[2]")).getText();
             String address = element.findElement(By.xpath("td[4]")).getText();
-            //String phones = element.findElement(By.xpath("td[6]")).getText();
+            String phones = element.findElement(By.xpath("td[6]")).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
             contacts.add(new ContactData().withFirstname(firstname).withAddress(address).withLastname(lastname));
         }
