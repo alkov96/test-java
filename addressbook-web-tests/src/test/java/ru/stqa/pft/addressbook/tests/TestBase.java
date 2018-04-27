@@ -9,12 +9,25 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
 
+import java.io.IOException;
+
+import static java.lang.System.getProperty;
+
 /**
  * @author a.kovtun
  * @since 22.03.2018.
  */
 public class TestBase {
-    protected static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
+    protected static ApplicationManager app;
+
+    static {
+        try {
+            app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     FirefoxDriver wd;
 
     @BeforeSuite

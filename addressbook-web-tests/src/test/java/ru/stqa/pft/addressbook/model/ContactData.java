@@ -153,9 +153,8 @@ public class ContactData {
     @Override
     public String toString() {
         return "ContactData{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", firstname='" + firstname + '\'' +
-                ", phones='" + phones + '\'' +
                 '}';
     }
 
@@ -167,15 +166,13 @@ public class ContactData {
         ContactData that = (ContactData) o;
 
         if (id != that.id) return false;
-        if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
-        return phones != null ? phones.equals(that.phones) : that.phones == null;
+        return firstname != null ? firstname.equals(that.firstname) : that.firstname == null;
     }
 
     @Override
     public int hashCode() {
         int result = id;
         result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
-        result = 31 * result + (phones != null ? phones.hashCode() : 0);
         return result;
     }
 }

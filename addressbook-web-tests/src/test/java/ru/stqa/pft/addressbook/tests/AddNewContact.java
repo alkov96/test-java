@@ -42,14 +42,16 @@ public class AddNewContact extends TestBase {
 
     @Test(dataProvider = "validContacts")
     public void testAddNewContact(ContactData contact) {
-       Contacts before = app.getContactHelper().all();
+        app.getNavigationHelper().gotoHome();
+        Contacts before = app.getContactHelper().all();
         File photo = new File("src/test/resources/cat.jpg");
-        //ContactData contact = new ContactData().withFirstname("NAME").withAllPhones("123").withPhoto(photo);
         app.getNavigationHelper().gotoHome();
         app.getContactHelper().createContact(contact, true);
         app.getNavigationHelper().gotoHome();
-        assertThat(app.getContactHelper().count(),equalTo(before.size()+1));
         Contacts after = app.getContactHelper().all();
+        assertThat(after.size(), equalTo(before.size() + 1));
+        // assertThat(app.getContactHelper().count(),equalTo(before.size()+1));
+        //Contacts after = app.getContactHelper().all();
         assertThat(after, equalTo(
                 before.withAdded(contact.withId(after.stream().mapToInt((g)-> g.getId()).max().getAsInt()))));
     }
@@ -58,7 +60,7 @@ public class AddNewContact extends TestBase {
     public void testBadAddNewContact() {
         Contacts before = app.getContactHelper().all();
         File photo = new File("src/test/resources/cat.jpg");
-        ContactData contact = new ContactData().withFirstname("NAME'''").withAllPhones("bvn").withPhoto(photo);
+        ContactData contact = new ContactData().withFirstname("NAME'").withLastname("hbtfh").withPhoto(photo).withAddress("nhe");
         app.getNavigationHelper().gotoHome();
         app.getContactHelper().createContact(contact, true);
         app.getNavigationHelper().gotoHome();
