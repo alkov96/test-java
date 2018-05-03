@@ -40,7 +40,7 @@ private SessionHelper sessionHelper;
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
         if (browser.equals(BrowserType.FIREFOX)) {
-            wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("C:\\Users\\a.kovtun\\AppData\\Local\\Mozilla Firefox\\firefox.exe"));
+            wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary(properties.getProperty("web.path")));
         }
         else if (browser.equals(BrowserType.CHROME)) {
             wd = new ChromeDriver();
