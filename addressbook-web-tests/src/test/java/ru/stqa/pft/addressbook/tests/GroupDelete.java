@@ -13,20 +13,21 @@ import static org.testng.Assert.assertEquals;
 public class GroupDelete extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
-        app.getNavigationHelper().gotoGroupPage();
-        if (!app.getGroupHelper().isThereAGroup()) {
-            app.getGroupHelper().createGroup(new GroupData().withName("gf"));
+        if (app.db().contacts().size() == 0) {
+            app.getNavigationHelper().gotoGroupPage();
+            app.getGroupHelper().createGroup(new GroupData().withName("group"));
         }
     }
 
     @Test
     public void testGroupDelete() {
-       Groups before = app.getGroupHelper().all();
+       Groups before = app.db().groups();
         GroupData deletedGroup = before.iterator().next();
+        app.getNavigationHelper().gotoGroupPage();
         app.getGroupHelper().deleteSelectedId(deletedGroup);
         app.getGroupHelper().deleteSelectedGroups();
         app.getGroupHelper().returnToGroupPage();
-        Groups after = app.getGroupHelper().all();
+        Groups after = app.db().groups();
         assertThat(app.getGroupHelper().count(),equalTo(before.size()-1));
         assertThat(after, equalTo(before.without(deletedGroup)));
         }

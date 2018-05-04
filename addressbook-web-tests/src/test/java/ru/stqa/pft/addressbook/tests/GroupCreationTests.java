@@ -1,6 +1,8 @@
 package ru.stqa.pft.addressbook.tests;
 
 import com.thoughtworks.xstream.XStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -19,6 +21,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 
 public class GroupCreationTests extends TestBase {
+
 
     @DataProvider
     public Iterator<Object[]> validGroups() throws IOException {
@@ -40,10 +43,10 @@ public class GroupCreationTests extends TestBase {
     @Test(dataProvider = "validGroups")
     public void testGroupCreation(GroupData group) {
             app.getNavigationHelper().gotoGroupPage();
-            Groups before = app.getGroupHelper().all();
+            Groups before = app.db().groups();
             app.getGroupHelper().createGroup(group);
             assertThat(app.getGroupHelper().count(),equalTo(before.size()+1));
-            Groups after = app.getGroupHelper().all();
+            Groups after = app.db().groups();
             assertThat(after, equalTo(
                     before.withAdded(group.withId(after.stream().mapToInt((g)-> g.getId()).max().getAsInt()))));
         }
@@ -53,11 +56,11 @@ public class GroupCreationTests extends TestBase {
     @Test
     public void testBadGroupCreation() {
         app.getNavigationHelper().gotoGroupPage();
-        Groups before = app.getGroupHelper().all();
+        Groups before = app.db().groups();
         GroupData group = new GroupData().withName("gnhgjngt'").withHeader("bgf").withFooter("gdf");
         app.getGroupHelper().createGroup(group);
         assertThat(app.getGroupHelper().count(), equalTo(before.size()));
-        Groups after = app.getGroupHelper().all();
+        Groups after = app.db().groups();
 
         assertThat(after, equalTo(before));
 

@@ -15,18 +15,18 @@ import static org.testng.Assert.assertEquals;
 public class DeleteContact extends TestBase {
    @Test
     public void testDeleteContact() {
-       app.getNavigationHelper().gotoHome();
-        if (!app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new ContactData().withFirstname("name").withAllPhones("1234"), true);
+        if (app.db().contacts().size() == 0) {
+            app.getNavigationHelper().gotoHome();
+            app.getContactHelper().createContact(new ContactData().withFirstname("name"), true);
         }
-       Contacts before = app.getContactHelper().all();
+       Contacts before = app.db().contacts();
        ContactData deletedContact = before.iterator().next();
        app.getNavigationHelper().gotoHome();
         app.getContactHelper().deleteSelectedId(deletedContact);
         app.getContactHelper().deleteContact();
        app.getContactHelper().acceptAlert();
         app.getNavigationHelper().gotoHome();
-       Contacts after = app.getContactHelper().all();
+       Contacts after = app.db().contacts();
        assertEquals(after.size(), before.size()-1 );
        assertThat(after, equalTo(before.without(deletedContact)));
        }

@@ -44,7 +44,7 @@ public class AddNewContact extends TestBase {
     public void testAddNewContact(ContactData contact) {
         app.getNavigationHelper().gotoHome();
         Contacts before = app.db().contacts();
-        File photo = new File("src/test/resources/cat.jpg");
+        //File photo = new File("src/test/resources/cat.jpg");
         app.getNavigationHelper().gotoHome();
         app.getContactHelper().createContact(contact, true);
         app.getNavigationHelper().gotoHome();

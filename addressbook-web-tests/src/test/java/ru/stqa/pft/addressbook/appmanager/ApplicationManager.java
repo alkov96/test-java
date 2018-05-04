@@ -27,6 +27,7 @@ private SessionHelper sessionHelper;
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
     private String browser;
+    private DbHelper dbHelper;
 
     public ApplicationManager(String browser) throws IOException {
         this.browser = browser;
@@ -38,6 +39,9 @@ private SessionHelper sessionHelper;
     public void init() throws IOException {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
+        dbHelper = new DbHelper();
+
 
         if (browser.equals(BrowserType.FIREFOX)) {
             wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary(properties.getProperty("web.path")));
@@ -73,5 +77,9 @@ private SessionHelper sessionHelper;
 
     public NavigationHelper getNavigationHelper() {
         return navigationHelper;
+    }
+
+    public  DbHelper db() {
+        return dbHelper;
     }
 }
