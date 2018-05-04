@@ -43,12 +43,12 @@ public class AddNewContact extends TestBase {
     @Test(dataProvider = "validContacts")
     public void testAddNewContact(ContactData contact) {
         app.getNavigationHelper().gotoHome();
-        Contacts before = app.getContactHelper().all();
+        Contacts before = app.db().contacts();
         File photo = new File("src/test/resources/cat.jpg");
         app.getNavigationHelper().gotoHome();
         app.getContactHelper().createContact(contact, true);
         app.getNavigationHelper().gotoHome();
-        Contacts after = app.getContactHelper().all();
+        Contacts after = app.db().contacts();
         assertThat(after.size(), equalTo(before.size() + 1));
         // assertThat(app.getContactHelper().count(),equalTo(before.size()+1));
         //Contacts after = app.getContactHelper().all();
@@ -58,14 +58,14 @@ public class AddNewContact extends TestBase {
 
     @Test
     public void testBadAddNewContact() {
-        Contacts before = app.getContactHelper().all();
+        Contacts before = app.db().contacts();
         File photo = new File("src/test/resources/cat.jpg");
         ContactData contact = new ContactData().withFirstname("NAME'").withLastname("hbtfh").withPhoto(photo).withAddress("nhe");
         app.getNavigationHelper().gotoHome();
         app.getContactHelper().createContact(contact, true);
         app.getNavigationHelper().gotoHome();
         assertThat(app.getContactHelper().count(),equalTo(before.size()));
-        Contacts after = app.getContactHelper().all();
+        Contacts after = app.db().contacts();
         assertThat(after, equalTo(before));
     }
 

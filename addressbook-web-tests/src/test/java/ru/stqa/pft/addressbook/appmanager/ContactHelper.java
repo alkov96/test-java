@@ -126,15 +126,15 @@ public class ContactHelper extends HelperBase {
     //public void modifySelectedId(ContactData contact) {
       //  selectContactById(contact.getId());
     //}
-    private void modifySelectedId(int id) {
+    public void selectModify(int id) {
         wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
     }
-    public void selectModify(ContactData contact) {
-        modifySelectedId(contact.getId());
+    public void modifySelectedId(ContactData contact) {
+        selectModify(contact.getId());
     }
 
     public ContactData infoFromEditForm(ContactData contact) {
-        modifySelectedId(contact.getId());
+        selectModify(contact.getId());
         String address = wd.findElement(By.name("address")).getAttribute("value");
         String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
         String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
