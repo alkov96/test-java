@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.Set;
 
@@ -26,7 +27,6 @@ public class DeleteContactFromGroup extends TestBase {
             app.getNavigationHelper().gotoHome();
             app.getContactHelper().createContact(new ContactData().withFirstname("name").withLastname("last"), true);
         }
-
         ContactData contact = app.getContactHelper().findContactInGroup(app.db().contacts());
         if (contact == null) {
             contact = app.db().contacts().iterator().next();

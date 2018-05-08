@@ -2,10 +2,13 @@ package ru.stqa.pft.addressbook.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author a.kovtun
@@ -27,9 +30,6 @@ public class ContactData {
     @Column(name = "address")
     @Type(type = "text")
     private  String address;
-
-    @Transient
-    private  String group;
 
     @Column(name = "lastname")
     private String lastname;
@@ -68,6 +68,11 @@ public class ContactData {
     @Column(name = "photo")
     @Type(type = "text")
     private String photo;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id")
+            , inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupData> groups = new HashSet<GroupData>();
 
     public File getPhoto() {
         return new File(photo);
@@ -110,11 +115,6 @@ public class ContactData {
         this.address = address;
         return this;
 
-    }
-
-    public ContactData withGroup(String group) {
-        this.group = group;
-        return this;
     }
 
     public ContactData withId(int id) {
@@ -186,9 +186,8 @@ public class ContactData {
         return mobile;
     }
 
-
-    public String getGroup()  {
-        return group;
+    public Groups getGroups() {
+        return new Groups(groups);
     }
 
     @Override
@@ -196,6 +195,7 @@ public class ContactData {
         return "ContactData{" +
                 "id=" + id +
                 ", firstname='" + firstname + '\'' +
+                ", groups=" + groups +
                 '}';
     }
 
@@ -207,13 +207,15 @@ public class ContactData {
         ContactData that = (ContactData) o;
 
         if (id != that.id) return false;
-        return firstname != null ? firstname.equals(that.firstname) : that.firstname == null;
+        if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
+        return groups != null ? groups.equals(that.groups) : that.groups == null;
     }
 
     @Override
     public int hashCode() {
         int result = id;
         result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
+        result = 31 * result + (groups != null ? groups.hashCode() : 0);
         return result;
     }
 }
